@@ -5,7 +5,14 @@ const user = new User({ name: "Kirat", age: 24 });
 console.log(user.get("name"));
 console.log(user.get("age"));
 
-user.set({ name: "newName", age: 99 });
+user.on("change", () => {
+	console.log("Change #1");
+});
+user.on("change", () => {
+	console.log("Change #1");
+});
+user.on("save", () => {
+	console.log("Save was triggered");
+});
 
-console.log(user.get("name"));
-console.log(user.get("age"));
+user.trigger("change");
